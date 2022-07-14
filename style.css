@@ -43,6 +43,8 @@ body {
 .frame {
     animation-name: frame;
     animation-duration: 2s;
+
+
 }
 
 @keyframes frame {
@@ -58,15 +60,16 @@ body {
 .promotion__timer {
     position: absolute;
     right: 20px;
-    top: 70px;
-    width: 53%;
+    top: 80px;
+    width: 46%;
 }
 
 .timer,
-.timerIn {
-    margin-top: 34px;
-    margin-bottom: 34px;
-    margin-left: -5px;
+.timerIn,
+.timer3 {
+    margin-top: 15px;
+    margin-bottom: 29px;
+    margin-left: -4px;
     display: flex;
     justify-content: flex-start;
 }
@@ -76,8 +79,8 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    width: 125px;
-    height: 120px;
+    width: 101px;
+    height: 85px;
     margin: 4px;
     border-radius: 25px 7px;
     background-color: rgba(255, 255, 255, 0.4);
@@ -86,24 +89,26 @@ body {
 }
 
 .promotion__timer .title {
-    font-size: 30px;
-    margin-top: 20px;
+    font-size: 24px;
 }
 
 .promotion__timer .timer__block span {
     font-family: 'Anonymous Pro', monospace;
-    font-size: 64px;
+    font-size: 50px;
     font-weight: 700;
 }
 
 @media (max-width: 800px) {
-    .main, .hidden {
+
+    .main,
+    .hidden {
         display: none;
     }
+
     .promotion__timer {
         width: 85%;
         top: 24px;
         left: 80px;
-    
+
     }
 }

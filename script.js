@@ -58,34 +58,17 @@ setClock('.timer', deadline);
 const start = '2016-10-01';
 
 function getSummary(starttime) {
-    const t = new Date() - Date.parse(starttime);
-
-    years = Math.floor(t / (1000 * 60 * 60 * 24 * 365)),
-        ds = Math.floor(t / (1000 * 60 * 60 * 24) % 365),
-        hrs = Math.floor((t / (1000 * 60 * 60) % 24)),
-        min = Math.floor((t / 1000 / 60) % 60),
-        sec = Math.floor((t / 1000) % 60);
-
-    return {
-        'total': t,
-        'years': years,
-        'ds': ds,
-        'hrs': hrs,
-        'min': min,
-        'sec': sec
-
-
-    };
+    return summaryCounter(starttime);
 
 }
 
 function setOclock(selector, starttime) {
     const timer = document.querySelector(selector),
         years = timer.querySelector('#years'),
-        ds = timer.querySelector('#ds'),
-        hrs = timer.querySelector('#hrs'),
-        min = timer.querySelector('#min'),
-        sec = timer.querySelector('#sec'),
+        days = timer.querySelector('#ds'),
+        hours = timer.querySelector('#hrs'),
+        minutes = timer.querySelector('#min'),
+        seconds = timer.querySelector('#sec'),
         timeInterval = setInterval(updateOclock, 1000);
 
     updateOclock();
@@ -94,14 +77,65 @@ function setOclock(selector, starttime) {
         const t = getSummary(starttime);
 
         years.innerHTML = addZero(t.years);
-        ds.innerHTML = addZero(t.ds);
-        hrs.innerHTML = addZero(t.hrs);
-        min.innerHTML = addZero(t.min);
-        sec.innerHTML = addZero(t.sec);
+        days.innerHTML = addZero(t.days);
+        hours.innerHTML = addZero(t.hours);
+        minutes.innerHTML = addZero(t.minutes);
+        seconds.innerHTML = addZero(t.seconds);
     }
 
 }
 setOclock('.timerIn', start);
+
+function summaryCounter(par) {
+    const t = new Date() - Date.parse(par);
+
+    let years = Math.floor(t / (1000 * 60 * 60 * 24 * 365)),
+        days = Math.floor(t / (1000 * 60 * 60 * 24) % 365),
+        hours = Math.floor((t / (1000 * 60 * 60) % 24)),
+        minutes = Math.floor((t / 1000 / 60) % 60),
+        seconds = Math.floor((t / 1000) % 60);
+
+    return {
+        total: t,
+        years,
+        days,
+        hours,
+        minutes,
+        seconds
+
+
+    };
+}
+
+const startLearningFE = '2022-04-20';
+
+function getAnotherSummary(beginning) {
+    return summaryCounter(beginning);
+}
+
+function setTimer(selector, beginning) {
+
+    const timer = document.querySelector(selector),
+        years = timer.querySelector('#how-years'),
+        days = timer.querySelector('#how-days'),
+        hours = timer.querySelector('#how-hours'),
+        minutes = timer.querySelector('#how-minutes'),
+        seconds = timer.querySelector('#how-seconds'),
+        timeInterval = setInterval(updateTimer, 1000);
+    updateTimer();
+
+    function updateTimer() {
+        const t = getAnotherSummary(beginning);
+        years.innerHTML = addZero(t.years);
+        days.innerHTML = addZero(t.days);
+        hours.innerHTML = addZero(t.hours);
+        minutes.innerHTML = addZero(t.minutes);
+        seconds.innerHTML = addZero(t.seconds);
+    }
+}
+
+
+setTimer('.timer3', startLearningFE);
 
 
 const image = document.querySelectorAll('img');
